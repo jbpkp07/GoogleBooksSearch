@@ -14,10 +14,10 @@ const BookSchema = new mongoose_1.Schema({
         required: true,
         unique: true // validation check to add unique books by googleId
     },
-    authors: {
-        type: String,
-        required: true
-    },
+    authors: [{
+            type: String,
+            required: true
+        }],
     description: {
         type: String,
         required: true

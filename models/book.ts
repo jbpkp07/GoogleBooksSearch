@@ -9,10 +9,10 @@ const BookSchema: Schema = new Schema({
         required: true,
         unique: true     // validation check to add unique books by googleId
     },
-    authors: {
+    authors: [{
         type: String,
         required: true
-    },
+    }],
     description: {
         type: String,
         required: true

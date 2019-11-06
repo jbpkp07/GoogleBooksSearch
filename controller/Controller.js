@@ -72,7 +72,7 @@ class Controller {
         this.isBookInDatabase(newBook)
             .then(async (isInDatabase) => {
             if (!isInDatabase[0]) {
-                return this.Books.create(newBook, { new: true }); // NOT in database (can continue with saving)
+                return this.Books.create(newBook); // NOT in database (can continue with saving)
             }
             return Promise.reject("Book already saved."); // is in database (do not continue saving a duplicate)
         })
@@ -96,6 +96,7 @@ class Controller {
         })
             .then((deletedBookDoc) => {
             const deletedBook = this.convertToIBook(deletedBookDoc);
+            deletedBook.isSaved = false;
             response.json(deletedBook);
         })
             .catch((err) => {
@@ -106,18 +107,21 @@ class Controller {
     searchGoogleBooks(request, response) {
         const googleBooks = [];
         const promises = [];
-        axios_1.default.get(config_1.config.googleAPIURL, { params: request.query })
+        const axiosConfig = {
+            params: request.query
+        };
+        axios_1.default.get(config_1.config.googleAPIURL, axiosConfig)
             .then(async (results) => {
-            const { items } = results;
+            const { items } = results.data;
             for (const item of items) {
                 const googleBook = {
                     _id: null,
-                    googleId: item.id,
-                    authors: item.volumeInfo.authors,
-                    description: item.volumeInfo.description,
-                    image: item.volumeInfo.imageLinks.thumbnail,
-                    link: item.volumeInfo.infoLink,
-                    title: item.volumeInfo.title,
+                    googleId: item.id || null,
+                    authors: item.volumeInfo.authors || [],
+                    description: item.volumeInfo.description || null,
+                    image: item.volumeInfo.imageLinks.thumbnail || null,
+                    link: item.volumeInfo.infoLink || null,
+                    title: item.volumeInfo.title || null,
                     isSaved: false
                 };
                 googleBooks.push(googleBook);

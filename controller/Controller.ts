@@ -1,4 +1,4 @@
-import { AxiosResponse, default as axios } from "axios";
+import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { default as express } from "express";
 import mongoose, { Model } from "mongoose";
 import { terminal } from "terminal-kit";
@@ -111,7 +111,7 @@ export class Controller {
 
                 if (!isInDatabase[0]) {
 
-                    return this.Books.create(newBook, { new: true }); // NOT in database (can continue with saving)
+                    return this.Books.create(newBook); // NOT in database (can continue with saving)
                 }
 
                 return Promise.reject("Book already saved.");         // is in database (do not continue saving a duplicate)
@@ -149,6 +149,8 @@ export class Controller {
 
                 const deletedBook: IBook = this.convertToIBook(deletedBookDoc);
 
+                deletedBook.isSaved = false;
+
                 response.json(deletedBook);
             })
             .catch((err: string) => {
@@ -165,23 +167,28 @@ export class Controller {
 
         const promises: Promise<[boolean, IBookDoc]>[] = [];
 
-        axios.get(config.googleAPIURL, { params: request.query })
+        const axiosConfig: AxiosRequestConfig = {
+
+            params: request.query
+        };
+
+        Axios.get(config.googleAPIURL, axiosConfig)
 
             .then(async (results: AxiosResponse) => {
-
-                const { items }: any = results;                
+       
+                const { items }: any = results.data;                
 
                 for (const item of items) {
 
                     const googleBook: IBook = {
 
                         _id: null,
-                        googleId: item.id,
-                        authors: item.volumeInfo.authors,
-                        description: item.volumeInfo.description,
-                        image: item.volumeInfo.imageLinks.thumbnail,
-                        link: item.volumeInfo.infoLink,
-                        title: item.volumeInfo.title,
+                        googleId: item.id || null,
+                        authors: item.volumeInfo.authors || [],
+                        description: item.volumeInfo.description || null,
+                        image: item.volumeInfo.imageLinks.thumbnail || null,
+                        link: item.volumeInfo.infoLink || null,
+                        title: item.volumeInfo.title || null,
                         isSaved: false
                     };
 

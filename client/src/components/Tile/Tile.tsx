@@ -20,13 +20,18 @@ export function Tile(props: IProps): JSX.Element {
         className += " shake";
     }
 
+    function clickTile(): void {
+
+        props.clickTile(props.id);
+    }
+
     return (
 
         <div className={className}>
             <img
                 src={props.src}
                 alt={props.alt}
-                onClick={(): void => props.clickTile(props.id)}
+                onClick={clickTile}
                 draggable={false}
             />
         </div>
