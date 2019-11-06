@@ -1,0 +1,48 @@
+:root {
+    --light-white: rgba(248,248,248,1.0);
+    --medium-white: rgba(232,232,232,1.0);
+    --dark-white: rgba(192,192,192,1.0);
+    --dark-white-transparent: rgba(192,192,192,0.5);
+
+    --lightest-gray: rgba(136,136,136,1.0);
+    --lighter-gray-transparent: rgba(72,72,72,0.2);
+    --lighter-gray: rgba(72,72,72,1.0);
+    --light-gray: rgba(48,48,48,1.0);
+    --medium-gray: rgba(32,32,32,1.0);
+    --dark-gray: rgba(18,18,18,1.0);
+    --black: rgba(0,0,0,1.0);
+
+    --light-blue: rgba(0,174,239,1.0);
+    --medium-blue: rgba(30,145,255,1.0);
+
+    --light-red: rgba(251,103,105,1.0);
+
+    --light-green: rgba(42,252,156,1.0);
+
+    --light-purple: rgba(151,64,250,1.0);
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+* {
+    user-select: none;
+}
+
+html {
+    height: 100%;
+    cursor: default;
+}
+
+body {
+    background: var(--dark-gray);
+    color: var(--light-green);
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 12pt;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}

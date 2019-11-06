@@ -1,0 +1,24 @@
+#sidebar {
+    background: var(--light-blue);
+    border-right: 5px solid var(--lighter-gray);
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    width: 240px;
+}
+
+#clickyTitleText {
+    background: var(--light-gray);
+    border: 5px solid var(--light-green);
+    border-radius: 10px;
+    color: var(--light-blue);
+    display: inline-block;
+    font-size: 24pt;
+    margin: 20px 0px 13px 0px;
+    padding: 10px;
+    text-shadow: 3px 0 var(--dark-gray);
+}
+
+hr {
+    border: 2px solid var(--lighter-gray);;
+}

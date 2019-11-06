@@ -1,0 +1,6 @@
+#tilesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px 30px 30px 275px;
+    width: calc(100% - 275px);
+}

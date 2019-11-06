@@ -1,0 +1,57 @@
+#scoresWrapper {
+    font-size: 14pt;
+    margin-top: 20px;
+}
+
+.scoreBox, .resultWin, .resultLoss {
+    background: var(--dark-gray);
+    border: 3px solid var(--lighter-gray);
+    border-radius: 10px;
+    color: var(--light-blue);
+    margin: 13px auto 0px auto;
+    padding: 8px;
+    width: 185px;
+}
+
+.scoreLabel {
+    position: absolute;
+    left: 52px;
+}
+
+.score {
+    color: var(--light-green);
+    position: relative;
+    left: 57px;
+}
+
+.resultWin {
+    animation: blinkingGreen 1.5s infinite;
+    -webkit-animation: blinkingGreen 1.5s infinite;
+    border: 3px solid var(--light-green);
+    box-shadow: 0px 0px 20px var(--light-green);
+    color: var(--light-green);
+    font-size: 24pt;
+    padding: 20px 8px 20px 8px;
+}
+
+.resultLoss {
+    animation: blinkingRed 1.5s infinite;
+    -webkit-animation: blinkingRed 1.5s infinite;
+    border: 3px solid var(--light-red);
+    box-shadow: 0px 0px 20px var(--light-red);
+    color: var(--light-red);
+    font-size: 24pt;
+    padding: 20px 8px 20px 8px;
+}
+
+@keyframes blinkingGreen {
+    0%{     color: var(--light-green); }
+    50%{    color: transparent; }
+    100%{   color: var(--light-green); }
+}
+
+@keyframes blinkingRed {
+    0%{     color: var(--light-red); }
+    50%{    color: transparent; }
+    100%{   color: var(--light-red); }
+}
