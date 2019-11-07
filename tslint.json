@@ -3,6 +3,27 @@
     "extends": ["tslint-react"],
     "jsRules": {},
     "rules": {
+        "jsx-alignment": true,
+        "jsx-ban-elements": false,
+        "jsx-ban-props": false,
+        "jsx-boolean-value": [true, "always"],
+        "jsx-curly-brace-presence": true,
+        "jsx-curly-spacing": [true, "never"],
+        "jsx-equals-spacing": [true, "never"],
+        "jsx-key": true,
+        "jsx-no-bind": true,
+        "jsx-no-lambda": true,
+        "jsx-no-multiline-js": true, 
+        "jsx-no-string-ref": true,
+        "jsx-self-close": true,
+        "jsx-space-before-trailing-slash": false,
+        "jsx-use-translation-function": false,
+        "jsx-whitespace-literal": true,
+        "jsx-wrap-multiline": true,
+        "react-no-unnecessary-fragment": true,
+
+
+        
         "adjacent-overload-signatures": true,
         "ban-types": {
             "options": [

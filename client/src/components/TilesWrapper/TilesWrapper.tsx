@@ -11,6 +11,6 @@ export function TilesWrapper(props: IProps): JSX.Element {
 
     return (
 
-        <div id="tilesWrapper">{props.children}</div>
+        <div id="tilesWrapper">{ props.children }</div>
     );
 }

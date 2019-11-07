@@ -20,10 +20,10 @@ export function SideBar(props: IProps): JSX.Element {
             <span id="clickyTitleText">Clicky Game</span>
             <hr />
             <Scores
-                score={props.score}
-                topScore={props.topScore}
-                hasWon={props.hasWon}
-                hasLost={props.hasLost}
+                score={ props.score }
+                topScore={ props.topScore }
+                hasWon={ props.hasWon }
+                hasLost={ props.hasLost }
             />
         </div>
     );

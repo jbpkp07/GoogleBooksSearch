@@ -28,5 +28,5 @@ export const Api: IClientApi = {
         };
 
         return Axios.get("/api/search", config);
-    },
+    }
 };

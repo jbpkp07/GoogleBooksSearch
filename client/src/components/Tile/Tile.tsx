@@ -27,12 +27,12 @@ export function Tile(props: IProps): JSX.Element {
 
     return (
 
-        <div className={className}>
+        <div className={ className }>
             <img
-                src={props.src}
-                alt={props.alt}
-                onClick={clickTile}
-                draggable={false}
+                src={ props.src }
+                alt={ props.alt }
+                onClick={ clickTile }
+                draggable={ false }
             />
         </div>
     );
