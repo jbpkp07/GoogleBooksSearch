@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { htmlRoutes } from "../../routes/htmlRoutes";
 import { NoMatchPage } from "./pages/404";
 // import { SavedPage } from "./pages/Saved";
 import { SearchPage } from "./pages/Search";
+import { htmlRoutes } from "./routes/html/htmlRoutes";
 
 
 export function App(): JSX.Element {

@@ -1,6 +1,6 @@
 import mongoose, { Model, Schema } from "mongoose";
 
-import { IBookDoc } from "../interfaces/IBookDoc";
+import { IBookDoc } from "./IBookDoc";
 
 const BookSchema: Schema = new Schema({
 

@@ -3,11 +3,11 @@ import { default as express } from "express";
 import mongoose, { Model } from "mongoose";
 import { terminal } from "terminal-kit";
 
+import { apiRoutes } from "../client/src/routes/api/apiRoutes";
 import { config } from "../config/config";
-import { IBook } from "../interfaces/IBook";
-import { IBookDoc } from "../interfaces/IBookDoc";
-import { Books } from "../models/book";
-import { apiRoutes } from "../routes/apiRoutes";
+import { Books } from "../models/book/book";
+import { IBook } from "../models/book/IBook";
+import { IBookDoc } from "../models/book/IBookDoc";
 
 
 export class Controller {

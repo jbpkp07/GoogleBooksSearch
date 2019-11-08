@@ -1,4 +1,4 @@
-import { IApiRoutes } from "../interfaces/IApiRoutes";
+import { IApiRoutes } from "./IApiRoutes";
 
 export const apiRoutes: IApiRoutes = {
 

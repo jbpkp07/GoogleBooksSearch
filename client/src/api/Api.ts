@@ -1,11 +1,11 @@
 import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
-import { IBook } from "../../../interfaces/IBook";
-import { apiRoutes } from "../../../routes/apiRoutes";
+import { IBook } from "../../../models/book/IBook";
+import { apiRoutes } from "../routes/api/apiRoutes";
 import { IApi } from "./IApi";
 
 
-export const Api: IApi = {
+export const api: IApi = {
 
     async getAllSavedBooks(): Promise<AxiosResponse> {
         

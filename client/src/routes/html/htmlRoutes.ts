@@ -1,4 +1,4 @@
-import { IHtmlRoutes } from "../interfaces/IHtmlRoutes";
+import { IHtmlRoutes } from "./IHtmlRoutes";
 
 export const htmlRoutes: IHtmlRoutes = {
 

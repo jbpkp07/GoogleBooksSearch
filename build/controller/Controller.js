@@ -7,9 +7,9 @@ const axios_1 = __importDefault(require("axios"));
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const terminal_kit_1 = require("terminal-kit");
+const apiRoutes_1 = require("../client/src/routes/api/apiRoutes");
 const config_1 = require("../config/config");
-const book_1 = require("../models/book");
-const apiRoutes_1 = require("../routes/apiRoutes");
+const book_1 = require("../models/book/book");
 class Controller {
     constructor() {
         this.router = express_1.default.Router();

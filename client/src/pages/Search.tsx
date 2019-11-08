@@ -1,11 +1,11 @@
 // import { AxiosResponse } from "axios";
 import React from "react";
 
-import { htmlRoutes } from "../../../routes/htmlRoutes";
 import { SideBar } from "../components/SideBar/SideBar";
 // import { Tile } from "../components/Tile/Tile";
 import { TilesWrapper } from "../components/TilesWrapper/TilesWrapper";
 import { Wrapper } from "../components/Wrapper/Wrapper";
+import { htmlRoutes } from "../routes/html/htmlRoutes";
 
 // import { IBook } from "../../../interfaces/IBook";
 // import { Api } from "../Api";
