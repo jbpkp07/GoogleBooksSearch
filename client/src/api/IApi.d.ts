@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 
-import { IBook } from "./IBook";
+import { IBook } from "../../../interfaces/IBook";
 
-export interface IClientApi {
+export interface IApi {
 
     getAllSavedBooks(): Promise<AxiosResponse>;
     saveBook(book: IBook): Promise<AxiosResponse>;

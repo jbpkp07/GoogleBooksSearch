@@ -11,6 +11,6 @@ export function Wrapper(props: IProps): JSX.Element {
 
     return (
 
-        <div id="screenWrapper">{ props.children }</div>
+        <div id="screenWrapper">{props.children}</div>
     );
 }

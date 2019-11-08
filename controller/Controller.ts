@@ -7,6 +7,8 @@ import { config } from "../config/config";
 import { IBook } from "../interfaces/IBook";
 import { IBookDoc } from "../interfaces/IBookDoc";
 import { Books } from "../models/book";
+import { apiRoutes } from "../routes/apiRoutes";
+
 
 export class Controller {
 
@@ -16,7 +18,7 @@ export class Controller {
 
     public constructor() {
 
-        this.router.use("/api", this.assignAPIRoutes());
+        this.router.use(this.assignAPIRoutes());
 
         this.router.use(this.sendClientApp.bind(this));
     }
@@ -36,15 +38,15 @@ export class Controller {
     private assignAPIRoutes(): express.Router {
 
         const apiRouter: express.Router = express.Router();
-
-        apiRouter.route("/books")
+        
+        apiRouter.route(apiRoutes.booksRoute)
             .get(this.getAllSavedBooks.bind(this))
             .post(this.saveBook.bind(this));
 
-        apiRouter.route("/books/:id")
+        apiRouter.route(`${apiRoutes.booksRoute}/:id`)
             .delete(this.deleteBook.bind(this));
 
-        apiRouter.route("/search")
+        apiRouter.route(apiRoutes.searchRoute)
             .get(this.searchGoogleBooks.bind(this));
 
         return apiRouter;
@@ -72,7 +74,8 @@ export class Controller {
                         resolve([false, result]); // NOT in database
                     }
 
-                }).catch((err: string) => {
+                })
+                .catch((err: string) => {
 
                     reject(err);
                 });

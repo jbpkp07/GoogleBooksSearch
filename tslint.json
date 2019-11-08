@@ -16,14 +16,11 @@
         "jsx-no-multiline-js": true, 
         "jsx-no-string-ref": true,
         "jsx-self-close": true,
-        "jsx-space-before-trailing-slash": false,
+        "jsx-space-before-trailing-slash": true,
         "jsx-use-translation-function": false,
         "jsx-whitespace-literal": true,
         "jsx-wrap-multiline": true,
         "react-no-unnecessary-fragment": true,
-
-
-        
         "adjacent-overload-signatures": true,
         "ban-types": {
             "options": [
@@ -216,14 +213,19 @@
             ]
         },
         "one-variable-per-declaration": true,
-        "ordered-imports": {
-            "options": {
+        "ordered-imports": [
+            true,
+            {
                 "grouped-imports": true,
+                "groups": [
+                    { "name": "project-files", "match": "^\\.", "order": 2 },
+                    { "name": "libraries", "match": ".*", "order": 1 }
+                ],
                 "import-sources-order": "case-insensitive",
                 "named-imports-order": "case-insensitive",
                 "module-source-path": "full"
             }
-        },
+        ],
         "prefer-function-over-method": false,
         "prefer-method-signature": true,
         "prefer-object-spread": true,

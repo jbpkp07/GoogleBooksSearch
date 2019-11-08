@@ -7,16 +7,18 @@
     width: 240px;
 }
 
-#clickyTitleText {
+#gbsTitleText {
     background: var(--light-gray);
     border: 5px solid var(--light-green);
     border-radius: 10px;
     color: var(--light-blue);
     display: inline-block;
-    font-size: 24pt;
+    font-size: 20pt;
+    line-height: 1.25;
     margin: 20px 0px 13px 0px;
-    padding: 10px;
+    padding: 5px;
     text-shadow: 3px 0 var(--dark-gray);
+    width: 185px;
 }
 
 hr {

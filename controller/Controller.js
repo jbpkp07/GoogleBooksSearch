@@ -9,11 +9,12 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const terminal_kit_1 = require("terminal-kit");
 const config_1 = require("../config/config");
 const book_1 = require("../models/book");
+const apiRoutes_1 = require("../routes/apiRoutes");
 class Controller {
     constructor() {
         this.router = express_1.default.Router();
         this.Books = book_1.Books;
-        this.router.use("/api", this.assignAPIRoutes());
+        this.router.use(this.assignAPIRoutes());
         this.router.use(this.sendClientApp.bind(this));
     }
     async connectDatabase() {
@@ -26,12 +27,12 @@ class Controller {
     }
     assignAPIRoutes() {
         const apiRouter = express_1.default.Router();
-        apiRouter.route("/books")
+        apiRouter.route(apiRoutes_1.apiRoutes.booksRoute)
             .get(this.getAllSavedBooks.bind(this))
             .post(this.saveBook.bind(this));
-        apiRouter.route("/books/:id")
+        apiRouter.route(`${apiRoutes_1.apiRoutes.booksRoute}/:id`)
             .delete(this.deleteBook.bind(this));
-        apiRouter.route("/search")
+        apiRouter.route(apiRoutes_1.apiRoutes.searchRoute)
             .get(this.searchGoogleBooks.bind(this));
         return apiRouter;
     }
@@ -48,7 +49,8 @@ class Controller {
                 else {
                     resolve([false, result]); // NOT in database
                 }
-            }).catch((err) => {
+            })
+                .catch((err) => {
                 reject(err);
             });
         });

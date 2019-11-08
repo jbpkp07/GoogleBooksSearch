@@ -33,34 +33,34 @@ export class SavedPage extends React.Component {
     };
 
     public readonly clickTile = (id: number): void => {
-        
+
         Api.searchGoogleBooks("Disc Golf Strong")
 
-        .then((response: AxiosResponse) => {
-            
-            // console.log(response);
+            .then((response: AxiosResponse) => {
 
-            const books: IBook[] = response.data;
+                // console.log(response);
 
-            console.log(books);
+                const books: IBook[] = response.data;
 
-            Api.getAllSavedBooks()
+                console.log(books);
 
-            .then((result: AxiosResponse) => {
-                
-                const savedBooks: IBook[] = result.data;
+                Api.getAllSavedBooks()
 
-                console.log(savedBooks);
+                    .then((result: AxiosResponse) => {
+
+                        const savedBooks: IBook[] = result.data;
+
+                        console.log(savedBooks);
+
+                    }).catch((err: string) => {
+
+                        console.log(err);
+                    });
 
             }).catch((err: string) => {
-            
+
                 console.log(err);
             });
-
-        }).catch((err: string) => {
-            
-            console.log(err);
-        });
 
 
 

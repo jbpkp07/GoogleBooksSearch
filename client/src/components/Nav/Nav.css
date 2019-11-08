@@ -1,9 +1,16 @@
-#scoresWrapper {
-    font-size: 14pt;
+#navWrapper {
     margin-top: 20px;
 }
 
-.scoreBox, .resultWin, .resultLoss {
+/* .navBtnActive {
+    color: var(--light-blue);
+}
+
+.navBtnInactive {
+    color: var(--light-blue-transparent);
+} */
+
+/* .scoreBox, .resultWin, .resultLoss {
     background: var(--dark-gray);
     border: 3px solid var(--lighter-gray);
     border-radius: 10px;
@@ -22,9 +29,9 @@
     color: var(--light-green);
     position: relative;
     left: 57px;
-}
+} */
 
-.resultWin {
+/* .resultWin {
     animation: blinkingGreen 1.5s infinite;
     -webkit-animation: blinkingGreen 1.5s infinite;
     border: 3px solid var(--light-green);
@@ -54,4 +61,4 @@
     0%{     color: var(--light-red); }
     50%{    color: transparent; }
     100%{   color: var(--light-red); }
-}
+} */

@@ -17,10 +17,12 @@ if (process.env.NODE_ENV === "production") {
 }
 app.use(controller.router);
 printHeaderFunctions_1.printHeader();
-controller.connectDatabase().then(() => {
+controller.connectDatabase()
+    .then(() => {
     app.listen(config_1.config.port, () => {
         terminal_kit_1.terminal.white("  Webserver listening on port ► ").brightGreen(`${config_1.config.port}\n\n`);
     });
-}).catch((err) => {
+})
+    .catch((err) => {
     terminal_kit_1.terminal.red(err);
 });

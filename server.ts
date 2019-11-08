@@ -21,14 +21,16 @@ app.use(controller.router);
 
 printHeader();
 
-controller.connectDatabase().then(() => {
+controller.connectDatabase()
 
-    app.listen(config.port, () => {
+    .then(() => {
 
-        terminal.white("  Webserver listening on port ► ").brightGreen(`${config.port}\n\n`);
+        app.listen(config.port, () => {
+
+            terminal.white("  Webserver listening on port ► ").brightGreen(`${config.port}\n\n`);
+        });
+    })
+    .catch((err: string) => {
+
+        terminal.red(err);
     });
-
-}).catch((err: string) => {
-
-    terminal.red(err);
-});

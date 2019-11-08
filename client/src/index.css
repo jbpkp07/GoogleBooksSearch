@@ -12,6 +12,7 @@
     --dark-gray: rgba(18,18,18,1.0);
     --black: rgba(0,0,0,1.0);
 
+    --light-blue-transparent: rgba(0,174,239,0.5);
     --light-blue: rgba(0,174,239,1.0);
     --medium-blue: rgba(30,145,255,1.0);
 
@@ -23,8 +24,8 @@
 }
 
 @font-face {
-    font-family: 'Roboto-Regular';
-    src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+    font-family: "Roboto-Regular";
+    src: url("./fonts/Roboto-Regular.ttf") format("truetype");
 }
 
 * {
@@ -39,10 +40,25 @@ html {
 body {
     background: var(--dark-gray);
     color: var(--light-green);
-    font-family: 'Roboto-Regular', sans-serif;
+    font-family: "Roboto-Regular", sans-serif;
     font-size: 12pt;
     overflow-x: hidden;
     /* overflow-y: hidden; */
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+.btn {
+    background: var(--dark-gray);
+    border: 3px solid var(--lighter-gray);
+    border-radius: 10px;
+    color: var(--light-blue);
+    cursor: pointer;
+    margin: 13px auto 0px auto;
+    padding: 8px;
+    width: 183px;
+}
+
+.btn:hover {
+    color: var(--light-green);
 }

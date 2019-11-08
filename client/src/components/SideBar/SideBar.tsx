@@ -1,15 +1,14 @@
 import React from "react";
 
-import { Scores } from "../Scores/Scores";
-
+import { Nav } from "../Nav/Nav";
 import "./SideBar.css";
+
 
 interface IProps {
 
-    score: number;
-    topScore: number;
-    hasWon: boolean;
-    hasLost: boolean;
+    isSearchPage: boolean;
+    isSavedPage: boolean;
+    href: string;
 }
 
 export function SideBar(props: IProps): JSX.Element {
@@ -17,14 +16,9 @@ export function SideBar(props: IProps): JSX.Element {
     return (
 
         <div id="sidebar">
-            <span id="clickyTitleText">Clicky Game</span>
+            <span id="gbsTitleText">Google Books Search</span>
             <hr />
-            <Scores
-                score={ props.score }
-                topScore={ props.topScore }
-                hasWon={ props.hasWon }
-                hasLost={ props.hasLost }
-            />
+            <Nav {...props} />
         </div>
     );
 }
