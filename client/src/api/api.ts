@@ -7,19 +7,19 @@ import { IApi } from "./IApi";
 
 export const api: IApi = {
 
-    async getAllSavedBooks(): Promise<AxiosResponse> {
+    async getAllSavedBooks(): Promise<AxiosResponse<IBook[]>> {
         
         return Axios.get(apiRoutes.booksRoute);
     },
-    async saveBook(book: IBook): Promise<AxiosResponse> {
+    async saveBook(book: IBook): Promise<AxiosResponse<IBook>> {
         
         return Axios.post(apiRoutes.booksRoute, book);
     },
-    async deleteBook(id: string): Promise<AxiosResponse> {
+    async deleteBook(id: string): Promise<AxiosResponse<IBook>> {
         
         return Axios.delete(`${apiRoutes.booksRoute}/${id}`);
     },
-    async searchGoogleBooks(query: string): Promise<AxiosResponse> {
+    async searchGoogleBooks(query: string): Promise<AxiosResponse<IBook[]>> {
         
         const config: AxiosRequestConfig = {
 

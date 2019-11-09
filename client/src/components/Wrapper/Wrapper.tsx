@@ -1,13 +1,9 @@
 import React from "react";
 
+import { IWrapperProps } from "./IWrapperProps";
 import "./Wrapper.css";
 
-interface IProps {
-
-    children: React.ReactNode;
-}
-
-export function Wrapper(props: IProps): JSX.Element {
+export function Wrapper(props: IWrapperProps): JSX.Element {
 
     return (
 

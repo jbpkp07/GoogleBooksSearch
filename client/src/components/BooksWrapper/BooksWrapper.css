@@ -1,0 +1,15 @@
+#booksWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px 30px 30px 275px;
+    width: calc(100% - 275px);
+}
+
+.noBooks {
+    color: var(--light-blue);
+    font-size: 16pt;
+    position: absolute;
+    text-align: center;
+    top: 240px;
+    width: calc(100% - 305px);
+}

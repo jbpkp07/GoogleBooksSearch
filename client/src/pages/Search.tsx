@@ -1,174 +1,195 @@
-// import { AxiosResponse } from "axios";
-import React from "react";
+import { AxiosResponse } from "axios";
+import React, { ChangeEvent } from "react";
 
+import { IBook } from "../../../models/book/IBook";
+import { api } from "../api/api";
+import { Book } from "../components/Book/Book";
+import { IBookProps } from "../components/Book/IBookProps";
+import { BooksWrapper } from "../components/BooksWrapper/BooksWrapper";
+import { ISideBarProps } from "../components/SideBar/ISideBarProps";
 import { SideBar } from "../components/SideBar/SideBar";
-// import { Tile } from "../components/Tile/Tile";
-import { TilesWrapper } from "../components/TilesWrapper/TilesWrapper";
 import { Wrapper } from "../components/Wrapper/Wrapper";
 import { htmlRoutes } from "../routes/html/htmlRoutes";
 
-// import { IBook } from "../../../interfaces/IBook";
-// import { Api } from "../Api";
-// import { ITile } from "../data/ITile";
-// import { tiles } from "../data/tiles";
 
+interface IState {
 
-
-// interface IState {
-
-    
-// }
-
+    searchValue: string;
+    searchMsg: string;
+    books: IBook[];
+}
 
 export class SearchPage extends React.Component {
 
-    // public readonly state: IState = {
+    public readonly state: IState = {
 
-       
-    // };
+        searchValue: "",
+        searchMsg: "Please search for books...",
+        books: []
+    };
 
+    public readonly handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
 
+        const name: string = event.target.name;
+        const value: string = event.target.value;
 
-    // public readonly clickTile = (id: number): void => {
+        const newState: object = {
 
-    //     Api.searchGoogleBooks("Disc Golf Strong")
+            [name]: value
+        };
 
-    //         .then((response: AxiosResponse) => {
+        this.setState(newState);
+    }
 
-    //             // console.log(response);
+    public readonly handleSearchSubmit = (event: ChangeEvent<HTMLInputElement>): void => {
 
-    //             const books: IBook[] = response.data;
+        if (this.state.searchValue.length !== 0) {
 
-    //             console.log(books);
+            event.preventDefault();
 
-    //             Api.getAllSavedBooks()
+            this.setState({ searchMsg: "Searching now..." }, () => {
 
-    //                 .then((result: AxiosResponse) => {
+                api.searchGoogleBooks(this.state.searchValue)
 
-    //                     const savedBooks: IBook[] = result.data;
+                    .then((response: AxiosResponse<IBook[]>) => {
 
-    //                     console.log(savedBooks);
+                        const newState: object = {
 
-    //                 }).catch((err: string) => {
+                            searchValue: "",
+                            books: response.data
+                        };
 
-    //                     console.log(err);
-    //                 });
+                        this.setState(newState);
+                    })
+                    .catch(() => {
 
-    //         }).catch((err: string) => {
+                        console.clear();
 
-    //             console.log(err);
-    //         });
+                        const newState: object = {
 
+                            searchValue: "",
+                            searchMsg: "No results found !!!",
+                            books: []
+                        };
 
+                        this.setState(newState);
+                    });
+            });
+        }
+    }
 
-    //     new Promise((resolve: Function): void => {
+    public readonly saveBook = (googleId: string): void => {
 
-    //         if (this.state.hasWon) {
+        for (const book of this.state.books) {
 
-    //             const newState: IState = {
+            if (book.googleId === googleId) {
 
-    //                 score: 0,
-    //                 topScore: this.state.topScore,
-    //                 tiles,
-    //                 clicked: [],
-    //                 hasWon: false,
-    //                 hasLost: false
-    //             };
+                api.saveBook(book)
 
-    //             this.setState(newState, resolve());  // reset game after win before continuing
-    //         }
-    //         else {
+                    .then((response: AxiosResponse<IBook>) => {
 
-    //             resolve();  // not a win, just continue
-    //         }
-    //     })
-    //         .then(() => {
+                        const savedBook: IBook = response.data;
 
-    //             if (!this.state.clicked.includes(id)) {
+                        book._id = savedBook._id;
 
-    //                 let topScore: number = this.state.topScore;
+                        book.isSaved = true;
 
-    //                 if (this.state.score === topScore) {
+                        this.setState({ books: this.state.books });
+                    })
+                    .catch((err: string) => {
 
-    //                     topScore++;
-    //                 }
+                        console.log(err);
+                    });
 
-    //                 this.state.clicked.push(id);
+                break;
+            }
+        }
+    }
 
-    //                 const newState: IState = {
+    public readonly deleteBook = (id: string): void => {
 
-    //                     score: this.state.score + 1,
-    //                     topScore,
-    //                     tiles: this.shuffleTiles(tiles),
-    //                     clicked: this.state.clicked,
-    //                     hasWon: this.state.clicked.length === tiles.length,
-    //                     hasLost: false
-    //                 };
+        for (const book of this.state.books) {
 
-    //                 this.setState(newState);
-    //             }
-    //             else {
+            if (book._id === id) {
 
-    //                 const newState: IState = {
+                api.deleteBook(id)
 
-    //                     score: 0,
-    //                     topScore: this.state.topScore,
-    //                     tiles: this.shuffleTiles(tiles),
-    //                     clicked: [],
-    //                     hasWon: false,
-    //                     hasLost: true
-    //                 };
+                    .then(() => {
 
-    //                 this.setState(newState);
-    //             }
-    //         });
-    // }
+                        book._id = null;
 
-    // private readonly renderTile = (tile: ITile, gameOver: boolean): JSX.Element => {
+                        book.isSaved = false;
 
-    //     return (
+                        this.setState({ books: this.state.books });
+                    })
+                    .catch((err: string) => {
 
-    //         <Tile
-    //             id={tile.id}
-    //             alt={tile.alt}
-    //             src={tile.src}
-    //             gameOver={gameOver}
-    //             clickTile={this.clickTile}
-    //             key={tile.id}
-    //         />
-    //     );
-    // }
+                        console.log(err);
+                    });
 
-    // private shuffleTiles(tilesArray: ITile[]): ITile[] {
-
-    //     for (let i: number = tilesArray.length - 1; i > 0; i--) {
-
-    //         const j: number = Math.floor(Math.random() * (i + 1));
-
-    //         [tilesArray[i], tilesArray[j]] = [tilesArray[j], tilesArray[i]];
-    //     }
-
-    //     return tilesArray;
-    // }
+                break;
+            }
+        }
+    }
 
     public readonly render = (): JSX.Element => {
 
-        const sideBarConfg = {
+        const sideBarProps: ISideBarProps = {
 
             isSearchPage: true,
             isSavedPage: false,
-            href: htmlRoutes.savedPageRoute
+            navHref: htmlRoutes.savedPageRoute,
+
+            searchFormProps: {
+
+                handleSearchInputChange: this.handleSearchInputChange,
+                handleSearchSubmit: this.handleSearchSubmit,
+                searchValue: this.state.searchValue
+            }
         };
 
-        console.log(htmlRoutes.searchPageRoute);
         return (
 
             <Wrapper>
-                <SideBar {...sideBarConfg} />
-                <TilesWrapper>
-                    {/* {this.state.tiles.map((tile: ITile) => this.renderTile(tile, gameOver))} */}
-                </TilesWrapper>
+                <SideBar {...sideBarProps} />
+                {this.renderBooks()}
             </Wrapper>
+        );
+    }
+
+    private readonly renderBooks = (): JSX.Element => {
+
+        if (this.state.books.length === 0) {
+
+            return (
+
+                <BooksWrapper>
+                    <div className="noBooks">{this.state.searchMsg}</div>
+                </BooksWrapper>
+            );
+        }
+
+        return (
+
+            <BooksWrapper>
+                {this.state.books.map((book: IBook) => this.renderBook(book))}
+            </BooksWrapper>
+        );
+    }
+
+    private readonly renderBook = (book: IBook): JSX.Element => {
+
+        const bookProps: IBookProps = {
+
+            key: book.googleId,
+            book,
+            saveBook: this.saveBook,
+            deleteBook: this.deleteBook
+        };
+
+        return (
+
+            <Book {...bookProps} />
         );
     }
 }

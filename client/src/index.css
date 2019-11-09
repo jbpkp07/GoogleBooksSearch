@@ -4,7 +4,7 @@
     --dark-white: rgba(192,192,192,1.0);
     --dark-white-transparent: rgba(192,192,192,0.5);
 
-    --lightest-gray: rgba(136,136,136,1.0);
+    --lightest-gray: rgba(148,148,148,1.0);
     --lighter-gray-transparent: rgba(72,72,72,0.2);
     --lighter-gray: rgba(72,72,72,1.0);
     --light-gray: rgba(48,48,48,1.0);
@@ -48,12 +48,17 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+a {
+    text-decoration: none;
+}
+
 .btn {
     background: var(--dark-gray);
     border: 3px solid var(--lighter-gray);
     border-radius: 10px;
     color: var(--light-blue);
     cursor: pointer;
+    font-size: 12pt;
     margin: 13px auto 0px auto;
     padding: 8px;
     width: 183px;
@@ -61,4 +66,10 @@ body {
 
 .btn:hover {
     color: var(--light-green);
+}
+
+.noMatch404 {
+    font-size: 24pt;
+    margin-top: 100px;
+    text-align: center;
 }

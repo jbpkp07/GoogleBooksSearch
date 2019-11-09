@@ -4,6 +4,6 @@ export function NoMatchPage(): JSX.Element {
 
     return (
 
-        <h1>404 Page Not Found</h1>
+        <div className="noMatch404">404 Page Not Found</div>
     );
 }

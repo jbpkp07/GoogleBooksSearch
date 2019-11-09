@@ -1,0 +1,28 @@
+.searchForm {
+    margin-top: 20px;
+}
+
+.formInput {
+    background: var(--dark-gray);
+    border: 3px solid var(--lighter-gray);
+    border-radius: 10px;
+    box-shadow: none;
+    color: var(--light-green);
+    font-size: 12pt;
+    height: 30px;
+    margin-bottom: 10px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    width: 180px;
+}
+
+::placeholder {
+    color: var(--lightest-gray);
+}
+
+#submitBtn {
+    padding: 5px;
+    width: 80px;
+}

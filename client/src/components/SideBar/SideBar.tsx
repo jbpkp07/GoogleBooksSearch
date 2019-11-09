@@ -1,24 +1,29 @@
 import React from "react";
 
+import { INavProps } from "../Nav/INavProps";
 import { Nav } from "../Nav/Nav";
+import { SearchForm } from "../SearchForm/SearchForm";
+import { ISideBarProps } from "../SideBar/ISideBarProps";
 import "./SideBar.css";
 
 
-interface IProps {
+export function SideBar(props: ISideBarProps): JSX.Element {
 
-    isSearchPage: boolean;
-    isSavedPage: boolean;
-    href: string;
-}
+    const navProps: INavProps = {
 
-export function SideBar(props: IProps): JSX.Element {
+        isSearchPage: props.isSearchPage,
+        isSavedPage: props.isSavedPage,
+        navHref: props.navHref
+    };
 
     return (
 
         <div id="sidebar">
             <span id="gbsTitleText">Google Books Search</span>
             <hr />
-            <Nav {...props} />
+            <Nav {...navProps} />
+            {props.isSearchPage && <hr />}
+            {props.isSearchPage && <SearchForm {...props.searchFormProps} />}
         </div>
     );
 }

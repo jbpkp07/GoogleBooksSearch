@@ -1,20 +1,15 @@
 import React from "react";
 
+import { INavProps } from "./INavProps";
 import "./Nav.css";
 
-interface IProps {
 
-    isSearchPage: boolean;
-    isSavedPage: boolean;
-    href: string;
-}
-
-export function Nav(props: IProps): JSX.Element {
+export function Nav(props: INavProps): JSX.Element {
 
     return (
 
         <div id="navWrapper">
-            <a href={props.href}>
+            <a href={props.navHref}>
                 <div className="btn">
                     {props.isSearchPage && "View saved books"}
                     {props.isSavedPage && "Search for books"}

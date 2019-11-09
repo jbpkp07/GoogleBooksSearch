@@ -182,20 +182,28 @@ export class Controller {
                 const { items }: any = results.data;                
 
                 for (const item of items) {
-
+    
                     const googleBook: IBook = {
 
                         _id: null,
                         googleId: item.id || null,
                         authors: item.volumeInfo.authors || [],
                         description: item.volumeInfo.description || null,
-                        image: item.volumeInfo.imageLinks.thumbnail || null,
+                        image: "No Image",
                         link: item.volumeInfo.infoLink || null,
                         title: item.volumeInfo.title || null,
                         isSaved: false
                     };
 
-                    googleBooks.push(googleBook);
+                    if (item.volumeInfo.imageLinks !== undefined) {  // Google Books API sometimes does not the 'imageLinks' property
+
+                        googleBook.image = item.volumeInfo.imageLinks.thumbnail || null;  
+                    }
+
+                    if (googleBooks.every((book: IBook) => book.googleId !== googleBook.googleId)) {   // prevents duplicate googleId search results
+
+                        googleBooks.push(googleBook);
+                    }
                 }
 
                 for (const book of googleBooks) {
